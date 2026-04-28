@@ -13,7 +13,7 @@ A simple browser-based Ping Pong game built with JavaScript, HTML5, and CSS — 
 - 🧠 AI or 2-player mode (optional)
 - 🕹️ Keyboard controls for left and right paddle movement
 - 📦 Lightweight and dependency-free (Vanilla JS)
-- ⚙️ Built with code suggestions from GitHub Copilot
+- ⚙️ Built with guides and  suggestions from GitHub Copilot.
 
 ---
 
