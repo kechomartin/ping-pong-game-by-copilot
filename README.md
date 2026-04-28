@@ -1,7 +1,7 @@
-# ping-pong-game-by-copilot
+# 🏓 Ping Pong Game .  
 This is the ping pong game inspired by AI and how it could challenge the human awareness and observation.
 
-# 🏓 Ping Pong Game .
+# About
 
 A simple browser-based Ping Pong game built with JavaScript, HTML5, and CSS — with coding assistance from **GitHub Copilot**. This project demonstrates the use of basic game loops, keyboard event handling, collision detection, and rendering using the HTML 5 element.
 
