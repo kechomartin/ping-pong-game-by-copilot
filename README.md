@@ -24,3 +24,9 @@ To run the game locally:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/kechomartin/ping-pong-game-by-copilot.git
+
+   
+## Technologies 
+  - Vanilla JavaScript
+  - HTML
+  - CSS
