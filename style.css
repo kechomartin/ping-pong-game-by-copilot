@@ -1,27 +1,189 @@
-body {
-  background: #111;
-  color: #eee;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
 
-h1 {
-  margin-top: 24px;
-  color: #43e97b;
-  letter-spacing: 3px;
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-canvas {
-  background: #222;
-  display: block;
-  margin: 40px auto 20px auto;
-  border: 2px solid #43e97b;
-  border-radius: 8px;
-}
+    :root {
+      --bg: #07080f;
+      --surface: #0d1020;
+      --accent: #00ffe1;
+      --accent2: #ff4d6d;
+      --glow: rgba(0,255,225,0.25);
+      --text: #e8eaf6;
+      --muted: #5a6080;
+    }
 
-.instructions {
-  color: #aaa;
-  font-size: 1.1em;
-}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 90%, rgba(255,255,255,0.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 5%, rgba(255,255,255,0.3) 0%, transparent 100%);
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 24px 0 8px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 8px;
+      color: var(--accent);
+      text-shadow: 0 0 20px var(--accent), 0 0 40px rgba(0,255,225,0.3);
+    }
+
+    h1 span { color: var(--accent2); }
+
+    .tagline {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    #controls-bar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 10px;
+      margin: 14px 0 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border: 1px solid var(--muted);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 2px;
+    }
+
+    .btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 10px var(--glow); }
+    .btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,255,225,0.05); }
+    .btn.danger { border-color: var(--accent2); color: var(--accent2); }
+    .btn.danger:hover { box-shadow: 0 0 10px rgba(255,77,109,0.3); }
+
+    select {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      padding: 8px 14px;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--muted);
+      border-radius: 2px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    select:focus { outline: none; border-color: var(--accent); }
+
+    #arena {
+      position: relative;
+      z-index: 2;
+    }
+
+    canvas {
+      display: block;
+      border: 1px solid rgba(0,255,225,0.3);
+      border-radius: 4px;
+      box-shadow: 0 0 30px rgba(0,255,225,0.1), inset 0 0 60px rgba(0,0,0,0.5);
+    }
+
+    #hud {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 800px;
+      max-width: 98vw;
+      padding: 10px 0 0;
+    }
+
+    .player-label {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .player-label.p1 { color: var(--accent); }
+    .player-label.p2 { color: var(--accent2); }
+
+    #status-msg {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    #info-bar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 24px;
+      margin: 10px 0 18px;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+    }
+
+    #info-bar span { white-space: nowrap; }
+
+    /* Overlay screens */
+    #overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,8,15,0.88);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      border-radius: 4px;
+    }
+
+    #overlay h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      margin-bottom: 8px;
+    }
+
+    #overlay p { font-size: 0.75rem; letter-spacing: 3px; color: var(--muted); margin-bottom: 20px; }
+    #overlay .sub { font-size: 0.65rem; letter-spacing: 2px; color: var(--muted); margin-top: 12px; }
+
+    .win-label { text-shadow: 0 0 30px currentColor; }
