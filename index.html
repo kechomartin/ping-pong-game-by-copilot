@@ -3,16 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ping Pong Game</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Ping Pong — Upgraded</title>
+  <link rel="icon" href="./assets/images/icons8-ping-pong-80.png">
+  <link rel="stylesheet" href="./style.css">
+  <style></style>
 </head>
 <body>
-  <h1>Ping Pong Game</h1>
+<div id="stars"></div>
+<header>
+  <h1>PING<span>·</span>PONG</h1>
+  <p class="tagline">Upgraded Edition</p>
+</header>
+
+<div id="controls-bar">
+  <button class="btn active" id="btn-2p">2 Players</button>
+  <button class="btn" id="btn-ai">vs AI</button>
+  <select id="diff-select" style="display:none">
+    <option value="easy">Easy</option>
+    <option value="medium" selected>Medium</option>
+    <option value="hard">Hard</option>
+    <option value="insane">Insane</option>
+  </select>
+  <select id="score-limit">
+    <option value="5">First to 5</option>
+    <option value="7" selected>First to 7</option>
+    <option value="10">First to 10</option>
+    <option value="99">Endless</option>
+  </select>
+  <button class="btn danger" id="btn-reset">Restart</button>
+</div>
+
+<div id="arena">
   <canvas id="pong" width="800" height="500"></canvas>
-  <div class="instructions">
-    <p><strong>Player 1:</strong> W (up), S (down)</p>
-    <p><strong>Player 2:</strong> Arrow Up (up), Arrow Down (down)</p>
+  <div id="overlay">
+    <h2 style="color:var(--accent)" class="win-label">PING·PONG</h2>
+    <p>Upgraded Edition</p>
+    <button class="btn" onclick="startGame()" style="font-size:0.85rem;padding:12px 32px;border-color:var(--accent);color:var(--accent)">▶ START GAME</button>
+    <p class="sub">2P: W/S · Arrow Up/Down &nbsp;|&nbsp; AI: W/S keys</p>
   </div>
-  <script src="game.js"></script>
+</div>
+
+<div id="hud">
+  <div class="player-label p1" id="p1-label">Player 1</div>
+  <div id="status-msg">Press Start</div>
+  <div class="player-label p2" id="p2-label">Player 2</div>
+</div>
+
+<div id="info-bar">
+  <span id="speed-info">Speed: —</span>
+  <span id="rally-info">Rally: 0</span>
+  <span id="best-rally">Best: 0</span>
+</div>
+
+<script src="./game.js"></script>
 </body>
 </html>
